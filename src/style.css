@@ -1,0 +1,148 @@
+body, p, ul {
+  margin: 0;
+  padding: 0
+}
+
+ul {
+  list-style-type: none;
+}
+
+.task-manager {
+  max-width: 1200px;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+
+.manager-block {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.add-button, .filter-button {
+  padding: 5px 16px;
+  outline: none;
+  background-color: lightgreen;
+  color: black;
+  border: none;
+  border-radius: 4px;
+}
+
+.add-button:hover, .filter-button:hover {
+  cursor: pointer;
+  background-color: rgba(144, 238, 144, 0.5);
+  transition: all 0.3s ease;
+}
+
+
+.manager-block__button {
+  margin: 10px;
+}
+
+
+.task-block {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.item-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  max-width: 30%;
+  width: 30%;
+}
+
+
+.item-container > :hover:not(.item-time,.popup-container) {
+  cursor: pointer;
+  opacity: 60%;
+
+}
+
+.item-time:hover {
+  cursor: default;
+}
+
+.item-status {
+
+}
+
+.edit-ico {
+  position: absolute;
+  width: 16px;
+  height: 21px;
+  right: 0;
+  margin-left: 10px;
+}
+
+.filter-list {
+  position: fixed;
+  min-width: 300px;
+  min-height: 500px;
+  height: auto;
+  border: 1px solid rgba(144, 238, 144, 0.5);
+  background-color: lightblue;
+  top: 0;
+  right: 0;
+}
+
+.filter-list_inactive,.popup_inactive {
+  display: none;
+}
+
+.popup-container {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  right: -100px;
+  height:200px;
+  background-color: pink;
+  z-index: 1;
+}
+
+.popup-element {
+  padding: 0 10px;
+  background-color: lightcoral;
+  color: black;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.popup-button {
+  padding: 0 10px;
+  background-color: lightgreen;
+  font-size: 21px;
+}
+
+.popup-element:hover {
+  cursor: pointer;
+}
+
+.popup-element:active {
+  font-size: 21px;
+}
+
+.extra-block__li {
+  display: flex;
+  padding: .5em;
+}
+
+.extra-block__li > label {
+  /*padding: .5em 1em .5em 0;*/
+  flex: 1;
+}
+
+.extra-block__li > input {
+  flex: 2;
+}
+
+.heading-attention {
+  border: 1px solid red;
+}
