@@ -1,6 +1,6 @@
-body, p, ul {
+body, p, ul, h2 {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 ul {
@@ -20,7 +20,7 @@ ul {
   margin-bottom: 20px;
 }
 
-.add-button, .filter-button {
+.add-button, .filter-button, .close-button {
   padding: 5px 16px;
   outline: none;
   background-color: lightgreen;
@@ -29,17 +29,15 @@ ul {
   border-radius: 4px;
 }
 
-.add-button:hover, .filter-button:hover {
-  cursor: pointer;
+.add-button:hover, .filter-button:hover, .close-button:hover, .show-button:hover {
   background-color: rgba(144, 238, 144, 0.5);
+  cursor: pointer;
   transition: all 0.3s ease;
 }
-
 
 .manager-block__button {
   margin: 10px;
 }
-
 
 .task-block {
   display: flex;
@@ -52,8 +50,8 @@ ul {
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
-  margin-right: 10px;
+  border: 2px solid lightgray;
+  margin-right: 20px;
   margin-bottom: 20px;
   max-width: 30%;
   width: 30%;
@@ -82,19 +80,29 @@ ul {
   margin-left: 10px;
 }
 
-.filter-list {
+.filter-container {
   position: fixed;
   min-width: 300px;
   min-height: 500px;
   height: auto;
-  border: 1px solid rgba(144, 238, 144, 0.5);
-  background-color: lightblue;
+  border: 2px solid rgba(144, 238, 144, 0.5);
+  border-radius: 4px;
+  background-color: #ffffff;
   top: 0;
   right: 0;
+  padding: 5px 10px;
 }
 
-.filter-list_inactive,.popup_inactive {
+.filter-container_inactive, .popup_inactive {
   display: none;
+}
+
+.show-button {
+  margin-top: 20px;
+  padding: 5px 16px;
+  background-color: lightgreen;
+  border-radius: 4px;
+  border: none;
 }
 
 .popup-container {
@@ -102,7 +110,7 @@ ul {
   top: 0;
   width: 100px;
   right: -100px;
-  height:200px;
+  height: 200px;
   background-color: pink;
   z-index: 1;
 }
@@ -121,7 +129,7 @@ ul {
   font-size: 21px;
 }
 
-.popup-element:hover {
+.popup-element:hover,.attribute-block__reset-button:hover {
   cursor: pointer;
 }
 
@@ -135,7 +143,6 @@ ul {
 }
 
 .extra-block__li > label {
-  /*padding: .5em 1em .5em 0;*/
   flex: 1;
 }
 
@@ -145,4 +152,51 @@ ul {
 
 .heading-attention {
   border: 1px solid red;
+}
+
+.filter-container__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.attributes-container {
+  border: 1px solid lightgreen;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.reset-button_hidden, .show-button_hidden, .counter_hidden, .show-button_hidden {
+  display: none;
+}
+
+.attribute-item {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.attribute-item:hover {
+  cursor: default;
+}
+
+.attribute-item__text{
+  margin-left: 15px;
+}
+
+.attribute-block__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 40px;
+}
+
+.attribute-block__reset-button {
+  border: none;
+  padding: 5px 10px;
+}
+
+.attribute-block__counter {
+  padding: 2px 5px;
+  background-color:lightgreen;
+  border-radius: 4px;
 }
