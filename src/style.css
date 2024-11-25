@@ -61,7 +61,6 @@ ul {
 .item-container > :hover:not(.item-time,.popup-container) {
   cursor: pointer;
   opacity: 60%;
-
 }
 
 .item-time:hover {

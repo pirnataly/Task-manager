@@ -1,6 +1,6 @@
 import {Difference, FieldsToFilterWithin, Status} from "../interfaces.js";
-import {createElement} from "../utils.js";
-import {attributesNames, deadLineAttributes} from "../constants.js";
+import {createElement, removeFromLocalStorage} from "../utils.js";
+import {attributesNames, deadLineAttributes, extraFields} from "../constants.js";
 import {AttributeBlock} from "../attributes.js";
 import {TodoItem} from "./todo-item.js";
 import {Item} from "./item.js";
@@ -65,7 +65,7 @@ export class TaskManager {
   renderItems(itemsArray: TodoItem[]): void {
     if (itemsArray.length !== 0) {
       itemsArray.forEach((itemData) => {
-        const newItem: Item = new Item(itemData.heading, itemData.description, itemData.data, itemData.status, new Date(itemData.deadline), itemData.responsible, itemData.place);
+        const newItem: Item = new Item(itemData.heading, itemData.description, itemData.data, itemData.status, new Date(itemData.deadline), itemData.responsible, itemData.place,extraFields);
         this.taskBlock.append(newItem.getHtml());
       })
     }
@@ -73,7 +73,7 @@ export class TaskManager {
   }
 
   addNewItem(): void {
-    const newItem = new Item('', '', String(new Date()), Status.todo, new Date(''), '', '');
+    const newItem = new Item('', '', String(new Date()), Status.todo, new Date(''), '', '',extraFields);
     this.taskBlock.append(newItem.getHtml());
   }
 
@@ -83,7 +83,7 @@ export class TaskManager {
       this.itemsData = this.getItems();
       this.filterAttributesContainer.innerHTML = ''
       this.filterContainer.classList.toggle('filter-container_inactive');
-      attributesNames.forEach(attributesName => {
+      attributesNames.forEach((attributesName:string) => {
         const newArray: string[] = [];
         this.itemsData.forEach((item) => {
           Object.keys(item).forEach((key) => {
@@ -91,10 +91,9 @@ export class TaskManager {
               newArray.push(String(item[key as FieldsToFilterWithin]));
             }
           });
-          if (localStorage.getItem(attributesName)) {
-            localStorage.removeItem(attributesName);
-          }
+          removeFromLocalStorage(attributesName);
         });
+
         const attributeBlock = new AttributeBlock(attributesName, attributesName === 'Deadline' ? deadLineAttributes : Array.from(new Set(newArray)))
         this.filterAttributesContainer.append(attributeBlock.getHtml());
       })
@@ -102,11 +101,7 @@ export class TaskManager {
 
     this.closeButton.addEventListener('click', () => {
       this.filterContainer.classList.add('filter-container_inactive');
-      attributesNames.forEach((attributeName) => {
-        if (localStorage.getItem(attributeName)) {
-          localStorage.removeItem(attributeName);
-        }
-      })
+      attributesNames.forEach(attributeName => removeFromLocalStorage(attributeName));
     });
 
 
@@ -152,9 +147,7 @@ export class TaskManager {
                     break;
                 }
               }
-
             });
-
           });
           copyOfItemsData = newArray;
         }
@@ -170,7 +163,6 @@ export class TaskManager {
         this.taskBlock.innerText = 'Nothing was found';
       }
     })
-
 
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
@@ -191,7 +183,6 @@ export class TaskManager {
             setTimeout(() => {
               this.itemsData = this.getItems();
             })
-
             break;
           }
           case 'Save updating': {
@@ -203,7 +194,5 @@ export class TaskManager {
         }
       }
     });
-
   }
-
 }

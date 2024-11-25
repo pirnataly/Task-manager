@@ -1,5 +1,5 @@
 import {svgCheckActive, svgCheckInactive} from "./constants.js";
-import {createElement} from "./utils.js";
+import {createElement, removeFromLocalStorage} from "./utils.js";
 import {OptionalFieldsToFilterWithin} from "./interfaces.js";
 
 export class AttributeItem {
@@ -38,7 +38,6 @@ export class AttributeList {
   }
 }
 
-
 export class AttributeBlock {
   container: HTMLElement;
   attributeHeader: HTMLElement;
@@ -61,7 +60,6 @@ export class AttributeBlock {
     this.attributesNavigationList = new AttributeList(arrayOfAttributes);
     this.container.append(this.attributeHeader, this.attributesNavigationList.getHtml());
     this.addEventListeners();
-
   }
 
   getHtml() {
@@ -92,9 +90,7 @@ export class AttributeBlock {
         child.classList.remove('attribute-item__active');
         (child.firstElementChild as Element).outerHTML = "";
         child.insertAdjacentHTML("afterbegin", svgCheckInactive);
-        if (localStorage.getItem(this.attributeHeading.textContent!)) {
-          localStorage.removeItem(this.attributeHeading.textContent!);
-        }
+        removeFromLocalStorage(this.attributeHeading.textContent!);
         if (this.container.parentElement) {
           AttributeBlock.showHideResultButton(this.container.parentElement);
         }
@@ -142,6 +138,4 @@ export class AttributeBlock {
       }
     }
   }
-
-
 }

@@ -1,3 +1,5 @@
+import {createElement} from "./utils.js";
+
 export enum Status {
   todo = "todo",
   completed = "completed"
@@ -20,6 +22,7 @@ export type FieldsToFilterWithin = 'status' | Extra;
 
 export type OptionalFieldsToFilterWithin = Partial<FieldsToFilterWithin>;
 
+export type ReturningTypes =  ReturnType<typeof createElement>;
 
 
 
